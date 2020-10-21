@@ -18,13 +18,5 @@ namespace RemoteStudy.Models
         public DateTime ExamDateTime { get; set; }
         public User Teacher { get; set; }
         public Subject Subject { get; set; }
-        public List<Tag> Tags { get; set; }
-        public List<Comment> Comments { get; set; }
-
-        public Course()
-        {
-            Comments = new List<Comment>();
-            Tags = new List<Tag>();
-        }
     }
 }

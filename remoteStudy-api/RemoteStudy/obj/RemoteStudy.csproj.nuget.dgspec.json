@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\RemoteStudy.csproj": {}
+    "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\remoteStudy-api\\RemoteStudy\\RemoteStudy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\RemoteStudy.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\remoteStudy-api\\RemoteStudy\\RemoteStudy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\RemoteStudy.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\remoteStudy-api\\RemoteStudy\\RemoteStudy.csproj",
         "projectName": "RemoteStudy",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\RemoteStudy.csproj",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\remoteStudy-api\\RemoteStudy\\RemoteStudy.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\remoteStudy-api\\RemoteStudy\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

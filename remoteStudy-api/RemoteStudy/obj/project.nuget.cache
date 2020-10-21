@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "avDDzA1rNJHj178UxYJ4ZiWp99iDPLZ3vyHNsijlVWCHAm4RiwsFH4Bo6Vutfa/bNmS1Kr8nS92KqviSIxhUIQ==",
+  "dgSpecHash": "rg7JvSmvwFt4fHrHvGK/lOEhnDVNRjn2Amcy/QQK7NmZQ8SX1rK1R2clurJLPclGWpgGOD/gaZYQWiLHi3oVcA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\RemoteStudy.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\remoteStudy-api\\RemoteStudy\\RemoteStudy.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore\\2.1.1\\microsoft.aspnetcore.2.1.1.nupkg.sha512",
