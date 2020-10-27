@@ -9,5 +9,11 @@ namespace RemoteStudy.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public List<CourseTag> CourseTags { get; set; }
+
+        public Tag()
+        {
+            CourseTags = new List<CourseTag>();
+        }
     }
 }

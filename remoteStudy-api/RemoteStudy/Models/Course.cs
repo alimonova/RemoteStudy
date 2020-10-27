@@ -17,6 +17,17 @@ namespace RemoteStudy.Models
         public DateTime CreationDateTime { get; set; }
         public DateTime ExamDateTime { get; set; }
         public User Teacher { get; set; }
+        public List<Lesson> Lessons { get; set; }
         public Subject Subject { get; set; }
+        public List<CourseTag> CourseTags { get; set; }
+        public List<HomeAssignment> HomeAssignments { get; set; }
+        public List<Comment> Comments { get; set; }
+        public Course()
+        {
+            CourseTags = new List<CourseTag>();
+            Lessons = new List<Lesson>();
+            HomeAssignments = new List<HomeAssignment>();
+            Comments = new List<Comment>();
+        }
     }
 }

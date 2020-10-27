@@ -9,6 +9,7 @@ namespace RemoteStudy.Models
     {
         public Guid Id { get; set; }
         public Guid CourseId { get; set; }
+        public Course Course { get; set; }
         public DateTime DateTimeCreation { get; set; }
         public string Text { get; set; }
         public List<LessonElement> LessonElements { get; set; }
