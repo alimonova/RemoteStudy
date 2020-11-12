@@ -1,16 +1,12 @@
 import * as React from "react";
-import Drawer from "@material-ui/core/Drawer";
-
-import logoSvg from "../../assets/icons/logo.svg";
+import WithLayout from "../../hoc/WithLayout";
 
 interface ICourseListPageProps {}
 
 const CourseListPage = (props: any) => {
   return (
-    <Drawer variant="permanent">
-      <img src={logoSvg} alt="logo" />{" "}
-    </Drawer>
+    <div>s</div>
   );
 };
 
-export default CourseListPage;
+export default WithLayout(CourseListPage);

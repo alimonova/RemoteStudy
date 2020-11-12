@@ -2,9 +2,9 @@
 @import "./styles/_button";
 
 body {
-  background: $background_color;
-}
+  margin: 0;
+  padding: 0;
 
-:global(.test) {
-  background-color: red;
+  background: $background_color;
+  color: #fff;
 }

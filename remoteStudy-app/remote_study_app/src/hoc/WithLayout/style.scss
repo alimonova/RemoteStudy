@@ -1,0 +1,9 @@
+.WithLayout {
+  &__layout {
+    display: flex;
+  }
+
+  &__main {
+    flex-grow: 1;
+  }
+}
