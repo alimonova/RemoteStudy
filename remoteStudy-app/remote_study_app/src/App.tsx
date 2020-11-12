@@ -1,10 +1,16 @@
-import React from 'react';
-import './App.scss'
+import React from "react";
+import "./App.scss";
+
+import Sidebar from "./components/Sidebar";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Remote Study</h1>
-    </div>
+    <>
+      <Sidebar />
+      <div className="nebody">
+        <h1>Remote Study</h1>
+      </div>
+    </>
   );
 }
 

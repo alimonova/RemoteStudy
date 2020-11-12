@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80.161" height="64.291" viewBox="0 0 80.161 64.291">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0cebeb"/>
+      <stop offset="0.439" stop-color="#20e3b2"/>
+      <stop offset="1" stop-color="#29ffc6"/>
+    </linearGradient>
+  </defs>
+  <g id="Сгруппировать_2" data-name="Сгруппировать 2" transform="translate(0 0)">
+    <path id="Icon_feather-triangle" data-name="Icon feather-triangle" d="M18.152,6.089,2.813,31.7a3.622,3.622,0,0,0,3.1,5.433H36.587a3.622,3.622,0,0,0,3.1-5.433L24.345,6.089a3.622,3.622,0,0,0-6.193,0Z" transform="translate(-2.328 -4.346)" fill="#fff"/>
+    <path id="Icon_feather-triangle-2" data-name="Icon feather-triangle" d="M18.152,6.089,2.813,31.7a3.622,3.622,0,0,0,3.1,5.433H36.587a3.622,3.622,0,0,0,3.1-5.433L24.345,6.089a3.622,3.622,0,0,0-6.193,0Z" transform="translate(15.112 4.955)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path id="Icon_feather-triangle-3" data-name="Icon feather-triangle" d="M15.824,1.743.485,27.35a3.622,3.622,0,0,0,3.1,5.433H34.259a3.622,3.622,0,0,0,3.1-5.433L22.017,1.743a3.622,3.622,0,0,0-6.193,0Z" transform="translate(80.161 64.291) rotate(180)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

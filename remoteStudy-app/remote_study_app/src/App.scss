@@ -1,4 +1,10 @@
+@import "./styles/_colors";
+@import "./styles/_button";
+
 body {
-  background-color: rgb(29, 28, 28);
-  color: #fff;
+  background: $background_color;
+}
+
+:global(.test) {
+  background-color: red;
 }
