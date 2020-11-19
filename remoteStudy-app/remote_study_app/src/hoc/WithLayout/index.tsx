@@ -5,7 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import { render } from "@testing-library/react";
 
 interface State {
-  isOpen: boolean;
+  isOpen?: boolean;
 }
 
 const WithLayout = (Component: React.ComponentType) => {
@@ -21,7 +21,7 @@ const WithLayout = (Component: React.ComponentType) => {
         <div className="WithLayout__layout">
           <header className="app-header">hhh</header>
           <Sidebar
-            isOpen={isOpen}
+            isOpen={isOpen!}
             setOpen={(isOpen) => this.setState({ isOpen })}
           />
           <div className="WithLayout__main">

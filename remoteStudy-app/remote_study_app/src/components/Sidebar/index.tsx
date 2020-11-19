@@ -2,18 +2,24 @@ import * as React from "react";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 import {
   createStyles,
   makeStyles,
   useTheme,
   Theme,
 } from "@material-ui/core/styles";
+
 import "./style.scss";
 
 import logoSvg from "../../assets/icons/logo.svg";
+import SidebarMenuList from "./SidebarMenuList";
 
 const drawerWidth = 330;
-const closeDrawerWidth = 100;
+const closeDrawerWidth = 110;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -63,16 +69,14 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface SidebarProps {
+interface ISidebarProps {
   isOpen: boolean;
-  setOpen: (isOpen: boolean) => void
+  setOpen: (isOpen: boolean) => void;
 }
 
-const Sidebar = ({ isOpen, setOpen }: SidebarProps) => {
+const Sidebar = ({ isOpen, setOpen }: ISidebarProps) => {
   const classes = useStyles();
   const theme = useTheme();
-
-  console.log(isOpen)
 
   const toggleDrawerOpen = () => {
     setOpen(!isOpen);
@@ -88,16 +92,36 @@ const Sidebar = ({ isOpen, setOpen }: SidebarProps) => {
             [classes.drawerClose]: !isOpen,
           }),
         }}
+        onClose={() => console.log(true)}
       >
-        <img
-          src={logoSvg}
-          alt="logo"
-          className="logo"
-          onClick={toggleDrawerOpen}
-        />
-        <h1>dfddfdfg</h1>
+        <div className="Sidebar__logo-wrapper">
+          <img
+            src={logoSvg}
+            alt="logo"
+            className="Sidebar__logo"
+            onClick={toggleDrawerOpen}
+          />
+        </div>
+        <SidebarMenuList isOpen={isOpen} />
+        {/* <List>
+          {["My courses"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                <img
+                  src={logoSvg}
+                  alt="logo"
+                  className="logo"
+                  onClick={toggleDrawerOpen}
+                />
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List> */}
       </Drawer>
-      <div className={clsx(classes.content, { [classes.contentShift]: isOpen })}>
+      <div
+        className={clsx(classes.content, { [classes.contentShift]: isOpen })}
+      >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. In dolore aut
         vel temporibus consequuntur, veniam commodi quam. Accusamus, nemo
         fugiat!

@@ -3,7 +3,7 @@ import WithLayout from "../../hoc/WithLayout";
 
 interface ICourseListPageProps {}
 
-const CourseListPage = (props: any) => {
+const CourseListPage = () => {
   return (
     <div>s</div>
   );

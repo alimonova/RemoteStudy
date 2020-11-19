@@ -1,4 +1,12 @@
-.logo {
-  cursor: pointer;
-}
+.Sidebar {
+  &__logo {
+    padding: 8px 16px;
+    cursor: pointer;
 
+    &-wrapper {
+      display: flex;
+      justify-self: flex-end;
+      margin-bottom: 70px;
+    }
+  }
+}
