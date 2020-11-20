@@ -1,6 +1,25 @@
 .WithLayout {
+  min-height: 100%;
+
   &__layout {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+
+    &-header {
+      display: flex;
+      justify-content: flex-end;
+      flex-grow: 1;
+    }
+
+    &-content {
+      flex-grow: 3;
+    }
+
+    &-footer {
+      flex-grow: 1;
+    }
   }
 
   &__main {

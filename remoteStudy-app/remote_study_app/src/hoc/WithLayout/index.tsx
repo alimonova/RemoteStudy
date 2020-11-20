@@ -1,53 +1,72 @@
 import React, { useState } from "react";
-import "./style.scss";
-
+import clsx from "clsx";
 import Sidebar from "../../components/Sidebar";
 import { render } from "@testing-library/react";
+import {
+  createStyles,
+  makeStyles,
+  useTheme,
+  Theme,
+} from "@material-ui/core/styles";
+
+import "./style.scss";
+
+import { MainSwitch } from "../../components/Switches";
+
+const drawerWidth = 280;
+const closeDrawerWidth = 110;
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    content: {
+      marginLeft: closeDrawerWidth,
+      padding: "24px 24px 0px 24px",
+      transition: theme.transitions.create(["width", "margin"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    contentShift: {
+      marginLeft: drawerWidth,
+      transition: theme.transitions.create(["width", "margin"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
+  })
+);
 
 interface State {
   isOpen?: boolean;
 }
 
-const WithLayout = (Component: React.ComponentType) => {
-  return class ModifiedComponents extends React.Component<State> {
-    state: Readonly<State> = {
-      isOpen: false,
-    };
+function WithLayout<T>(Component: React.ComponentType<T>) {
+  const WithLayoutComponent = (props: any) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const classes = useStyles();
+    return (
+      <div className="WithLayout">
+        <Sidebar isOpen={isOpen} setOpen={setIsOpen} />
+        <div
+          className={clsx(
+            classes.content,
+            { [classes.contentShift]: isOpen },
+            "WithLayout__layout"
+          )}
+        >
+          <header className="WithLayout__layout-header">
+            <MainSwitch />
+          </header>
 
-    render() {
-      const { isOpen } = this.state;
-
-      return (
-        <div className="WithLayout__layout">
-          <header className="app-header">hhh</header>
-          <Sidebar
-            isOpen={isOpen!}
-            setOpen={(isOpen) => this.setState({ isOpen })}
-          />
-          <div className="WithLayout__main">
-            <Component {...this.props} />
+          <div className="WithLayout__layout-content">
+            <Component {...props} />
           </div>
-          <footer className="app-footer">sss</footer>
+          <footer className="WithLayout__layout-footer">sss</footer>
         </div>
-      );
-    }
+      </div>
+    );
   };
-};
-
-// function WithLayout<T>(Component: React.ComponentType<T>) {
-//   return (props: T) => {
-//     const [isOpen, setIsOpen] = useState(false);
-//     return (
-//       <div className="WithLayout__layout">
-//         <header className="app-header">hhh</header>
-//         <Sidebar isOpen={isOpen} setOpen={setIsOpen} />
-//         <div className="WithLayout__main">
-//           <Component {...props} />
-//         </div>
-//         <footer className="app-footer">sss</footer>
-//       </div>
-//     );
-//   };
-// }
+  return WithLayoutComponent;
+}
 
 export default WithLayout;

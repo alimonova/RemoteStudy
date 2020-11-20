@@ -18,7 +18,7 @@ import "./style.scss";
 import logoSvg from "../../assets/icons/logo.svg";
 import SidebarMenuList from "./SidebarMenuList";
 
-const drawerWidth = 330;
+const drawerWidth = 280;
 const closeDrawerWidth = 110;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -119,13 +119,13 @@ const Sidebar = ({ isOpen, setOpen }: ISidebarProps) => {
           ))}
         </List> */}
       </Drawer>
-      <div
+      {/* <div
         className={clsx(classes.content, { [classes.contentShift]: isOpen })}
       >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. In dolore aut
         vel temporibus consequuntur, veniam commodi quam. Accusamus, nemo
         fugiat!
-      </div>
+      </div> */}
       {/* <Button className={clsx(classes.root, className)} {...other}>
         {children || "class names"}
       </Button> */}

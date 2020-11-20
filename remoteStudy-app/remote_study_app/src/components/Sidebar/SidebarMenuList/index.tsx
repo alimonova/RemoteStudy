@@ -4,6 +4,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
 
 import allCoursesSvg from "../../../assets/icons/allCourses.svg";
 import addCourseSvg from "../../../assets/icons/addCourse.svg";
@@ -31,7 +32,9 @@ const SidebarMenuList = ({ isOpen }: ISidebarMenuProps) => {
           </ListItemIcon>
           {isOpen && (
             <ListItemText className={styles["text-wrapper"]}>
-              {text}
+              <Typography variant="body2" component="p">
+                {text}
+              </Typography>
             </ListItemText>
           )}
         </ListItem>
