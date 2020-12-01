@@ -16,14 +16,14 @@ namespace RemoteStudy.Configurations
             builder.HasKey(o => o.Id);
 
             builder
-                .HasOne(c => c.Course)
+                .HasOne(c => c.Lesson)
                 .WithMany(p => p.Comments)
-                .HasForeignKey(c => c.CourseId);
+                .HasForeignKey(c => c.LessonId);
 
             builder
                 .HasOne(c => c.User)
                 .WithMany(p => p.Comments)
-                .HasForeignKey(c => c.CourseId);
+                .HasForeignKey(c => c.UserId);
 
         }
     }
