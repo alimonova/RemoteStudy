@@ -25,3 +25,4 @@ C:\Users\Admin\source\repos\RemoteStudy\RemoteStudy\remoteStudy-api\RemoteStudy\
 C:\Users\Admin\source\repos\RemoteStudy\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.RazorTargetAssemblyInfo.cache
 C:\Users\Admin\source\repos\RemoteStudy\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.dll
 C:\Users\Admin\source\repos\RemoteStudy\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.pdb
+C:\Users\Admin\source\repos\RemoteStudy\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.csproj.CoreCompileInputs.cache
