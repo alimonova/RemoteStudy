@@ -13,7 +13,7 @@ namespace RemoteStudy.Configurations
         public void Configure(EntityTypeBuilder<HomeAssignmentUser> builder)
         {
             builder.ToTable("HomeAssignmentUsers");
-            builder.HasKey(o => o.Id);
+            builder.HasKey(sc => new { sc.HomeAssignmentId, sc.UserId });
 
             builder
                 .HasOne(c => c.HomeAssignment)
