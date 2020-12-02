@@ -12,6 +12,7 @@ namespace RemoteStudy.Services.Interfaces
         Subject GetSubjectById(Guid id);
         Subject CreateSubject(Subject subject);
         Subject UpdateSubject(Subject subject);
+        Subject GetSubjectByCourseId(Guid courseId);
         void Delete(Guid id);
     }
 }
