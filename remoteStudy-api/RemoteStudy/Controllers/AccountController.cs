@@ -46,18 +46,23 @@ namespace RemoteStudy.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { Email = model.Email };
+                var user = new User { Email = model.Email, Id = Guid.NewGuid(), UserName = Guid.NewGuid().ToString() };
                 var result = await _userManager.CreateAsync(user, model.Password);
-                var profile = new Models.Profile { UserId = user.Id };
-                _context.Profiles.Add(profile);
                 _context.SaveChanges();
+                var profile = new Models.Profile { UserId = user.Id, FirstName = model.FirstName, LastName = model.LastName, Pobatkovi = model.Pobatkovi, Phone = model.Phone };
+                _context.Profiles.Add(profile);
                 _context.Users.Find(user.Id).Profile = profile;
                 _context.SaveChanges();
+                
                 if (!result.Succeeded)
                 {
                     return BadRequest(result.Errors);
                 }
-                await _userManager.AddToRoleAsync(user, "user");
+
+                var test = _context.Roles;
+                var userRole = (model.IsTeacher) ? "Teacher" : "Student";
+
+                await _userManager.AddToRoleAsync(user, userRole);
                 return Created("", "Пользователь успешно создан.");
             }
             else
@@ -66,10 +71,18 @@ namespace RemoteStudy.Controllers
             }
         }
 
-        [HttpGet("Users")]
-        public async Task<IActionResult> GetUsers()
+        [HttpGet("Students")]
+        public async Task<IActionResult> GetStudents()
         {
-            var users = await _userManager.GetUsersInRoleAsync("User");
+            var users = await _userManager.GetUsersInRoleAsync("Student");
+            var _users = _mapper.Map<IEnumerable<UserDto>>(users);
+            return Ok(_users);
+        }
+
+        [HttpGet("Teachers")]
+        public async Task<IActionResult> GetTeachers()
+        {
+            var users = await _userManager.GetUsersInRoleAsync("Teacher");
             var _users = _mapper.Map<IEnumerable<UserDto>>(users);
             return Ok(_users);
         }
@@ -78,13 +91,14 @@ namespace RemoteStudy.Controllers
         public async Task<IActionResult> Authenticate([FromBody] UserAuthorization model)
         {
             var user = await this._userManager.FindByEmailAsync(model.Email);
-            var roleId = _context.UserRoles.First(x => x.UserId == user.Id).RoleId;
-            var role = _context.Roles.First(x => x.Id == roleId).Name;
 
             if (user == null)
             {
                 return BadRequest(new { message = "Username or password is incorrect!" });
             }
+
+            var roleId = _context.UserRoles.First(x => x.UserId == user.Id).RoleId;
+            var role = _context.Roles.First(x => x.Id == roleId).Name;
 
             var claims = new List<Claim>();
             claims.Add(new Claim("UserID", user.Id.ToString()));
@@ -118,23 +132,20 @@ namespace RemoteStudy.Controllers
             return Unauthorized();
         }
 
-        [HttpGet("roles")]
-        public async Task<IActionResult> GetRoles()
+        [HttpGet("Role/{email}")]
+        public async Task<IActionResult> GetRoleByEmail(string email)
         {
             IList<string> roles = new List<string> { "Роль не определена" };
-            User user = _context.Users.First(x => x.UserName == "admin");
-            if (user != null)
-                roles = await _userManager.GetRolesAsync(user);
-            return Ok(roles);
-        }
+            var users = _context.Users.Where(x => x.Email == email);
+            if (users.Count() != 0)
+            {
+                roles = await _userManager.GetRolesAsync(users.First());
+            }
+            else
+            {
+                return BadRequest(new { message = "No user with such email!" });
+            }
 
-        [HttpGet("roles/{email}")]
-        public async Task<IActionResult> GetRolesByEmail(string email)
-        {
-            IList<string> roles = new List<string> { "Роль не определена" };
-            User user = _context.Users.First(x => x.Email == email);
-            if (user != null)
-                roles = await _userManager.GetRolesAsync(user);
             return Ok(roles);
         }
     }
