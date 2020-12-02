@@ -29,6 +29,12 @@ namespace RemoteStudy.Configurations
                 .HasMany(c => c.Comments)
                 .WithOne(p => p.User)
                 .HasForeignKey(c => c.UserId);
+
+            builder
+                .HasMany(c => c.HomeAssignmentUsers)
+                .WithOne(p => p.User)
+                .HasForeignKey(c => c.UserId);
+
         }
     }
 }

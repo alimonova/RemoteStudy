@@ -19,6 +19,7 @@ namespace RemoteStudy.Models
         public DbSet<HomeAssignment> HomeAssignments { get; set; }
         public DbSet<HomeAssignmentUser> HomeAssignmentUsers { get; set; }
         public DbSet<CourseTag> CourseTags { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
 
         public RemoteStudyContext()
@@ -32,8 +33,6 @@ namespace RemoteStudy.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // modelBuilder.ApplyConfiguration(new CategoryConfiguration());
-
             base.OnModelCreating(modelBuilder);
         }
     }
