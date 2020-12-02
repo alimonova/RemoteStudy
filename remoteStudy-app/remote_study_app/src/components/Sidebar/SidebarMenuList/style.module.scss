@@ -3,9 +3,9 @@
 }
 
 .icon-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 70px;
+  display: flex;
+  justify-content: center;
+  width: 70px;
 }
 
 .text-wrapper {
@@ -13,5 +13,34 @@
 }
 
 .icon {
-    width: 32px;
+  path {
+    transition: 300ms;
+  }
+
+  &-stroke {
+    &:hover {
+      path {
+        stroke: #ffffff;
+      }
+    }
+  }
+
+  &-fill {
+    &:hover {
+      path {
+        fill: #ffffff;
+      }
+    }
+  }
+}
+
+.log-out {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  cursor: pointer;
+
+  &-text {
+    margin-left: 7px;
+  }
 }
