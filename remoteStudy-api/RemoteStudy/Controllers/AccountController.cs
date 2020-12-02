@@ -44,7 +44,7 @@ namespace RemoteStudy.Controllers
         [HttpPost("Registration")]
         public async Task<IActionResult> Register([FromBody] UserRegistration model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && _context.Users.Where(x => x.Email == model.Email).Count() == 0)
             {
                 var user = new User { Email = model.Email, Id = Guid.NewGuid(), UserName = Guid.NewGuid().ToString() };
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -53,7 +53,7 @@ namespace RemoteStudy.Controllers
                 _context.Profiles.Add(profile);
                 _context.Users.Find(user.Id).Profile = profile;
                 _context.SaveChanges();
-                
+
                 if (!result.Succeeded)
                 {
                     return BadRequest(result.Errors);
