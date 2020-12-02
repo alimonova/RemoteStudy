@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -72,10 +72,30 @@ const useStylesForBtn = makeStyles((theme) => ({
 const SignUpForm = () => {
   const classes = useStyles();
   const btnClasses = useStylesForBtn();
-  const [teacher, setTeacher] = React.useState(false);
-  const handleTeacherState = (event) => {
-    setTeacher(!teacher);
+
+  const [registrationData, setRegistrationData] = useState({
+    email: "",
+    firstName: "",
+    lastName: "",
+    middleName: "",
+    phoneNumber: "",
+    password: "",
+    checkTeacher: false,
+  })
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    if (event.target.name === "checkTeacher") {
+      setRegistrationData({...registrationData, [event.target.name]: !registrationData.checkTeacher});
+    } else {
+      setRegistrationData({...registrationData, [event.target.name]: value});
+    }
   };
+
+  const handleClick = () => {
+    console.log(registrationData)
+  }
+
   return (
     <>
       <div className="content-wrapper">
@@ -90,6 +110,8 @@ const SignUpForm = () => {
                   <Grid item xs={12}>
                     <TextField
                       fullWidth
+                      value={registrationData.email}
+                      onChange={handleInputChange}
                       label="Email"
                       name="email"
                       size="small"
@@ -112,6 +134,8 @@ const SignUpForm = () => {
                   <Grid item xs={4}>
                     <TextField
                       fullWidth
+                      value={registrationData.firstName}
+                      onChange={handleInputChange}
                       label="First Name"
                       name="firstName"
                       size="small"
@@ -135,6 +159,8 @@ const SignUpForm = () => {
                   <Grid item xs={4}>
                     <TextField
                       fullWidth
+                      value={registrationData.lastName}
+                      onChange={handleInputChange}
                       label="Last Name"
                       name="lastName"
                       size="small"
@@ -157,6 +183,8 @@ const SignUpForm = () => {
                   <Grid item xs={4}>
                     <TextField
                       fullWidth
+                      value={registrationData.middleName}
+                      onChange={handleInputChange}
                       label="Middle Name"
                       name="middleName"
                       size="small"
@@ -178,6 +206,7 @@ const SignUpForm = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <MuiPhoneNumber
+                      onChange={(value) => setRegistrationData({...registrationData, phoneNumber: value})}
                       label="Phone number"
                       name="phoneNumber"
                       size="small"
@@ -201,17 +230,18 @@ const SignUpForm = () => {
                     component="label"
                     container
                     alignItems="center"
-                    
                   > <Grid><Typography style={{marginLeft:'10px'}}>Teacher</Typography></Grid>
                     <CustomSwitch
-                      checked={teacher}
-                      onChange={handleTeacherState}
+                      checked={registrationData.checkTeacher}
+                      onChange={handleInputChange}
                       name="checkTeacher"
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
                       fullWidth
+                      value={registrationData.password}
+                      onChange={handleInputChange}
                       label="Password"
                       name="password"
                       size="small"
@@ -243,6 +273,7 @@ const SignUpForm = () => {
                     root: btnClasses.root, // class name, e.g. `classes-nesting-root-x`
                     label: btnClasses.label, // class name, e.g. `classes-nesting-label-x`
                   }}
+                  onClick={handleClick}
                 >
                   Sign up
                 </Button>
