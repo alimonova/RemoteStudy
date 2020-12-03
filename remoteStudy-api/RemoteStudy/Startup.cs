@@ -140,8 +140,8 @@ namespace RemoteStudy
                 app.UseHsts();
             }
 
-            app.UseCors(options =>
-            options.WithOrigins("http://localhost:4200")
+            app.UseCors(builder =>
+            builder.AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader());
 

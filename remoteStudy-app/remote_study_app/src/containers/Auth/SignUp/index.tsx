@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom"
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import logoSvg from "../../../assets/icons/logo.svg";
 import Typography from "@material-ui/core/Typography";
 import MuiPhoneNumber from "material-ui-phone-number";
 import Switch from "@material-ui/core/Switch";
+
+import logoSvg from "../../../assets/icons/logo.svg";
+import api, { apiServer } from "../../../api"
+
+import axios from "axios";
 
 export interface SignUpFormProps {}
 const CustomSwitch = withStyles({
@@ -73,6 +78,8 @@ const SignUpForm = () => {
   const classes = useStyles();
   const btnClasses = useStylesForBtn();
 
+  const history = useHistory()
+
   const [registrationData, setRegistrationData] = useState({
     email: "",
     firstName: "",
@@ -93,7 +100,17 @@ const SignUpForm = () => {
   };
 
   const handleClick = () => {
-    console.log(registrationData)
+    apiServer({
+      api: api.auth.register,
+      body: registrationData
+    }).then((res) => {
+      if (!res.err) {
+        history.push("/login")
+        console.log("SUCCESS")
+      } else {
+        console.log(res.err)
+      }
+    })
   }
 
   return (

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom"
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -6,6 +7,8 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import logoSvg from '../../../assets/icons/logo.svg';
 import Typography from '@material-ui/core/Typography';
+
+import api, { apiServer } from "../../../api"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -56,6 +59,33 @@ export interface LoginFormProps {}
 function LoginForm ()  {
   const classes = useStyles();
   const btnClasses = useStylesForBtn();
+
+  const history = useHistory()
+
+  const [authorizationData, setauthorizationData] = useState({
+    email: "",
+    password: "",
+  })
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    setauthorizationData({...authorizationData, [event.target.name]: value});
+  };
+
+  const handleClick = () => {
+    apiServer({
+      api: api.auth.login,
+      body: authorizationData
+    }).then((res) => {
+      if (!res.err) {
+        history.push("/courses")
+        console.log("SUCCESS")
+      } else {
+        console.log(res.err)
+      }
+    })
+  }
+
   return (
     <>
       <div className="content-wrapper">
@@ -68,6 +98,8 @@ function LoginForm ()  {
                     <Grid item xs={12}>
                       <TextField
                         fullWidth
+                        value={authorizationData.email}
+                        onChange={handleInputChange}
                         label="Email"
                         name="email"
                         size="small"
@@ -90,6 +122,8 @@ function LoginForm ()  {
                     <Grid item xs={12}>
                       <TextField
                         fullWidth
+                        value={authorizationData.password}
+                        onChange={handleInputChange}
                         label="Password"
                         name="password"
                         size="small"
@@ -121,6 +155,7 @@ function LoginForm ()  {
                       root: btnClasses.root, // class name, e.g. `classes-nesting-root-x`
                       label: btnClasses.label, // class name, e.g. `classes-nesting-label-x`
                     }}
+                    onClick={handleClick}
                   >
                     Log in
                   </Button>
