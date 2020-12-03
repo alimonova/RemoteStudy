@@ -44,6 +44,8 @@ namespace RemoteStudy.Services
         public Comment UpdateComment(Comment comment)
         {
             _commentcontext.Comments.Update(comment);
+            _commentcontext.SaveChanges();
+
             return comment;
         }
 
