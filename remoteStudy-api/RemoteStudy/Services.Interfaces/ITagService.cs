@@ -13,6 +13,6 @@ namespace RemoteStudy.Services.Interfaces
         Tag CreateTag(Tag tag);
         Tag UpdateTag(Tag tag);
         void Delete(Guid id);
-        //IEnumerable<Tag> GetTagsByCourseId(Guid courseId);
+        IEnumerable<Tag> GetTagsByCourseId(Guid courseId);
     }
 }

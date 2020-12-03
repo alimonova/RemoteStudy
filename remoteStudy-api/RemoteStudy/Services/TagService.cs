@@ -38,6 +38,8 @@ namespace RemoteStudy.Services
         public Tag UpdateTag(Tag tag)
         {
             _tagcontext.Tags.Update(tag);
+            _tagcontext.SaveChanges();
+
             return tag;
         }
 
@@ -49,6 +51,19 @@ namespace RemoteStudy.Services
                 _tagcontext.Tags.Remove(tag);
                 _tagcontext.SaveChanges();
             }
+        }
+
+        public IEnumerable<Tag> GetTagsByCourseId(Guid courseId)
+        {
+            IEnumerable<Tag> tags = new List<Tag>();
+            var courseTags = _tagcontext.CourseTags.Where(x => x.CourseId == courseId);
+
+            foreach (var courseTag in courseTags)
+            {
+                tags.Append(_tagcontext.Tags.First(x => x.Id == courseTag.TagId));
+            }
+
+            return tags;
         }
     }
 }
