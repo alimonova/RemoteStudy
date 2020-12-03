@@ -38,6 +38,8 @@ namespace RemoteStudy.Services
         public Course UpdateCourse(Course course)
         {
             _coursecontext.Courses.Update(course);
+            _coursecontext.SaveChanges();
+
             return course;
         }
 
