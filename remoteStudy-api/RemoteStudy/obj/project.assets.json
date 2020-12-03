@@ -12031,23 +12031,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Users\\5\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\remoteStudy-api\\RemoteStudy\\RemoteStudy.csproj",
+      "projectUniqueName": "G:\\RemoteStudy\\remoteStudy-api\\RemoteStudy\\RemoteStudy.csproj",
       "projectName": "RemoteStudy",
-      "projectPath": "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\remoteStudy-api\\RemoteStudy\\RemoteStudy.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\source\\repos\\RemoteStudy\\RemoteStudy\\remoteStudy-api\\RemoteStudy\\obj\\",
+      "projectPath": "G:\\RemoteStudy\\remoteStudy-api\\RemoteStudy\\RemoteStudy.csproj",
+      "packagesPath": "C:\\Users\\5\\.nuget\\packages\\",
+      "outputPath": "G:\\RemoteStudy\\remoteStudy-api\\RemoteStudy\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\5\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12055,8 +12055,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://pkgs.dev.azure.com/sburchinskaya2000/TelegramBlurb/_packaging/PartsUnlimitedShared/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.1": {
@@ -12088,7 +12087,6 @@
             "version": "[2.1.2, )"
           },
           "Microsoft.NETCore.App": {
-            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true

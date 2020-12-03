@@ -26,3 +26,17 @@ C:\Users\Admin\source\repos\RemoteStudy\RemoteStudy\remoteStudy-api\RemoteStudy\
 C:\Users\Admin\source\repos\RemoteStudy\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.dll
 C:\Users\Admin\source\repos\RemoteStudy\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.pdb
 C:\Users\Admin\source\repos\RemoteStudy\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.csproj.CoreCompileInputs.cache
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\bin\Debug\netcoreapp2.1\RemoteStudy.deps.json
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\bin\Debug\netcoreapp2.1\RemoteStudy.runtimeconfig.json
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\bin\Debug\netcoreapp2.1\RemoteStudy.runtimeconfig.dev.json
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\bin\Debug\netcoreapp2.1\RemoteStudy.dll
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\bin\Debug\netcoreapp2.1\RemoteStudy.pdb
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.csprojAssemblyReference.cache
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.csproj.CoreCompileInputs.cache
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.RazorAssemblyInfo.cache
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.RazorAssemblyInfo.cs
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.AssemblyInfoInputs.cache
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.AssemblyInfo.cs
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.RazorTargetAssemblyInfo.cache
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.dll
+G:\RemoteStudy\remoteStudy-api\RemoteStudy\obj\Debug\netcoreapp2.1\RemoteStudy.pdb
