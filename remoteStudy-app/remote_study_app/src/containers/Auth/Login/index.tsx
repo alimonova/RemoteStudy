@@ -70,11 +70,9 @@ function LoginForm() {
   };
 
   const handleClick = (data) => {
-    console.log(data);
-
     apiServer({
       api: api.auth.login,
-      body: authorizationData,
+      body: data,
     }).then((res) => {
       if (!res.err) {
         history.push("/courses");
