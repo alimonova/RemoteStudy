@@ -12,6 +12,7 @@ namespace RemoteStudy.Services.Interfaces
         Lesson GetLessonById(Guid id);
         Lesson CreateLesson(Lesson lesson);
         Lesson UpdateLesson(Lesson lesson);
+        IEnumerable<Lesson> GetLessonsByCourseId(Guid courseId);
         void Delete(Guid id);
     }
 }

@@ -21,6 +21,11 @@ namespace RemoteStudy.Services
             return _lessoncontext.Lessons;
         }
 
+        public IEnumerable<Lesson> GetLessonsByCourseId(Guid courseId)
+        {
+            return _lessoncontext.Lessons.Where(x=>x.CourseId == courseId);
+        }
+
         public Lesson GetLessonById(Guid id)
         {
             var lesson = GetLessons().Where(x => x.Id == id).First();
@@ -38,6 +43,7 @@ namespace RemoteStudy.Services
         public Lesson UpdateLesson(Lesson lesson)
         {
             _lessoncontext.Lessons.Update(lesson);
+            _lessoncontext.SaveChanges();
             return lesson;
         }
 
