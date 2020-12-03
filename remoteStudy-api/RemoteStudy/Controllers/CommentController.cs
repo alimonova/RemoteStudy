@@ -25,14 +25,14 @@ namespace RemoteStudy.Controllers
 
 
         [HttpGet("Read")]
-        public ActionResult<CommentDto> Get()
+        public IActionResult Get()
         {
             var comments = _comments.GetComments();
             return Ok(_mapper.Map<IEnumerable<CommentDto>>(comments));
         }
 
         [HttpGet("ReadById/{id}")]
-        public ActionResult<CommentDto> Get(Guid id)
+        public IActionResult Get(Guid id)
         {
             var comment = _comments.GetCommentById(id);
             if (comment == null)
@@ -43,25 +43,24 @@ namespace RemoteStudy.Controllers
         }
 
         [HttpGet("ReadByLessonId/{id}")]
-        public ActionResult<CommentDto> GetByLessonId(Guid lessonId)
+        public IActionResult GetByLessonId(Guid lessonId)
         {
             var comments = _comments.GetCommentsByLessonId(lessonId);
-            if (comments == null)
+            if (comments.Count() == 0)
             {
                 return NotFound();
             }
             return Ok(_mapper.Map<IEnumerable<CommentDto>>(comments));
         }
 
-
         [HttpPost("Create")]
-        public ActionResult<Comment> Post(CommentDto comment)
+        public IActionResult Post(CommentDto comment)
         {
             if (ModelState.IsValid)
             {
                 var _comment = _mapper.Map<Comment>(comment);
                 var item = _comments.CreateComment(_comment);
-                return CreatedAtAction("", item);
+                return Created("", item);
             }
             return BadRequest(ModelState);
         }

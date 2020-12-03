@@ -10,5 +10,6 @@ namespace RemoteStudy.Dto
         public Guid Id { get; set; }
         public DateTime DateTimeCreation { get; set; }
         public string Text { get; set; }
+        public Guid CourseId { get; set; }
     }
 }
