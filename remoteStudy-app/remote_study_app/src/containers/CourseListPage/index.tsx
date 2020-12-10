@@ -9,23 +9,8 @@ import { CourseCard } from "../../components/Cards";
 interface ICourseListPageProps {}
 
 const CourseListPage = () => {
-  /** REDUX ACTIONS */
-  // const dispatch = useDispatch();
-
-  // const loadCoursesHandler = useCallback(() => {
-  //   dispatch(coursesActions.loadCourses());
-  // }, [dispatch]);
-
-  // /** USE EFFECTS */
-  // useEffect(() => {
-  //   loadCoursesHandler();
-  // }, []);
-
   return (
-    <ul className="CourseListPage-list">
-        <li className="CourseListPage-item">
-        </li>
-    </ul>
+    <CourseCard />
   );
 };
 
