@@ -25,9 +25,9 @@ namespace RemoteStudy.Controllers
 
 
         [HttpGet("Read")]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] PageFilterSortModel parameters)
         {
-            var courses = _courses.GetCourses();
+            var courses = _courses.GetCourses(parameters);
             return Ok(_mapper.Map<IEnumerable<CourseDto>>(courses));
         }
 
