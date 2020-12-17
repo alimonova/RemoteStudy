@@ -37,10 +37,15 @@ namespace RemoteStudy.Services
             if (parameters.TagIds != "")
             {
                 List<string> tags = parameters.TagIds.Split(",").ToList();
+                List<string> courseTags = parameters.TagIds.Split(",").ToList();
 
                 foreach (var tag in tags)
                 {
-                    courses = courses.Where(x => x.CourseTags.Where(y => y.TagId == Guid.Parse(tag)).Count() > 0).ToList();
+                    var courseTagsIds = _coursecontext.CourseTags.Where(x => x.TagId == Guid.Parse(tag)).ToList();
+                    var courseIds = new List<Guid>();
+                    courseTagsIds.ForEach(x => courseIds.Add(x.CourseId));
+
+                    courses = courses.Where(y => courseIds.Contains(y.Id)).ToList();
                 }
             }
 
