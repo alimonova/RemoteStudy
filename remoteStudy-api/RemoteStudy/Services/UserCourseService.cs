@@ -43,5 +43,21 @@ namespace RemoteStudy.Services
                 _usercoursecontext.SaveChanges();
             }
         }
+
+        public UserCourse AddCourseToFavourites(Guid userId, Guid courseId)
+        {
+            var userCourse = _usercoursecontext.UserCourses
+                .Where(x => x.UserId == userId && x.CourseId == courseId).First();
+            userCourse.IsFavourite = true;
+
+            _usercoursecontext.UserCourses.Update(userCourse);
+            _usercoursecontext.SaveChanges();
+            return userCourse;
+        }
+
+        public IEnumerable<UserCourse> GetFavouriteCourses(Guid userId)
+        {
+            return _usercoursecontext.UserCourses.Where(x => x.IsFavourite).ToList();
+        }
     }
 }

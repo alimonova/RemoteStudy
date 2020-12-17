@@ -11,6 +11,8 @@ namespace RemoteStudy.Services.Interfaces
         IEnumerable<UserCourse> GetUserCourses();
         UserCourse GetUserCourseById(Guid id);
         UserCourse CreateUserCourse(UserCourse userCourse);
+        UserCourse AddCourseToFavourites(Guid userId, Guid courseId);
+        IEnumerable<UserCourse> GetFavouriteCourses(Guid userId);
         void Delete(Guid id);
     }
 }

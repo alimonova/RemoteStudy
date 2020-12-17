@@ -10,7 +10,7 @@ namespace RemoteStudy.Dto
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public Guid CourseId { get; set; }
-        public bool HasAccess { get; set; }
-        public bool IsFavourite { get; set; }
+        public bool HasAccess { get; set; } = false;
+        public bool IsFavourite { get; set; } = false;
     }
 }
