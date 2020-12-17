@@ -14,11 +14,13 @@ namespace RemoteStudy.Models
         public string Text { get; set; }
         public List<LessonElement> LessonElements { get; set; }
         public List<Comment> Comments { get; set; }
+        public List<HomeAssignment> HomeAssignments { get; set; }
 
         public Lesson()
         {
             LessonElements = new List<LessonElement>();
             Comments = new List<Comment>();
+            HomeAssignments = new List<HomeAssignment>();
         }
     }
 }

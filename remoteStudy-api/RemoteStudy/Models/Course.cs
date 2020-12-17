@@ -20,12 +20,10 @@ namespace RemoteStudy.Models
         public List<Lesson> Lessons { get; set; }
         public Subject Subject { get; set; }
         public List<CourseTag> CourseTags { get; set; }
-        public List<HomeAssignment> HomeAssignments { get; set; }
         public Course()
         {
             CourseTags = new List<CourseTag>();
             Lessons = new List<Lesson>();
-            HomeAssignments = new List<HomeAssignment>();
         }
     }
 }
