@@ -61,6 +61,7 @@ namespace RemoteStudy
             services.AddTransient<IHomeAssignmentUserService, HomeAssignmentUserService>();
             services.AddTransient<ISubjectService, SubjectService>();
             services.AddTransient<ITagService, TagService>();
+            services.AddTransient<IUserCourseService, UserCourseService>();
 
             services.AddSingleton<CurrentUserInfo>();
 

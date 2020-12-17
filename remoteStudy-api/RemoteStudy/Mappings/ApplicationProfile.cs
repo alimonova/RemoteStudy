@@ -23,6 +23,7 @@ namespace RemoteStudy.Mappings
             CreateMap<Profile, ProfileDto>().ReverseMap();
             CreateMap<Subject, SubjectDto>().ReverseMap();
             CreateMap<Tag, TagDto>().ReverseMap();
+            CreateMap<UserCourse, UserCourseDto>().ReverseMap();
         }
     }
 }
