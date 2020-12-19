@@ -6,10 +6,11 @@ interface Props {
   value?: boolean
   onChange?: (value: boolean) => void
   isDisabled?: boolean
+  className?: string
 }
 
 export default function Switch(props: Props): ReactElement {
-  const { onChange, isDisabled } = props
+  const { onChange, isDisabled, className } = props
   const [isActive, setIsActive] = useState(false)
 
   const value = props.value || isActive
@@ -25,7 +26,7 @@ export default function Switch(props: Props): ReactElement {
 
   return (
     <div
-      className={txt.join([classes.switch, isDisabled && classes.is_disabled])}
+      className={txt.join([classes.switch, isDisabled && classes.is_disabled, className])}
       onClick={changeActive}
     >
       <div className={txt.join([classes.circle, value && classes.active])} />

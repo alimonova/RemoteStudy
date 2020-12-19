@@ -9,9 +9,13 @@ export default function Header({}: Props): ReactElement {
   const [isActive, setIsActive] = useState(false)
 
   return (
-    <div>
+    <header className={classes.header}>
       <ProgressBar className={classes.progress_bar} value={isActive ? 10 : 80} />
-      <Switch value={isActive} onChange={(v) => setIsActive(v)} />
-    </div>
+      <Switch
+        value={isActive}
+        onChange={(v) => setIsActive(v)}
+        className={classes.switch}
+      />
+    </header>
   )
 }
