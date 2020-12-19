@@ -1,0 +1,168 @@
+.H1,
+.H2,
+.H3,
+.H4,
+.H5,
+.H6,
+.P10,
+.P12,
+.P14,
+.P16,
+.P18,
+.P24 {
+  margin: 0;
+  white-space: pre-line;
+  font-family: "Roboto", sans-serif;
+}
+
+.H1,
+.H2,
+.H3,
+.H4,
+.H5,
+.H6,
+.Span10,
+.Span12,
+.Span14,
+.Span16,
+.Span18,
+.Span24,
+.Span12bold,
+.Span14bold,
+.Span16bold,
+.Span18bold {
+  color: white;
+  white-space: pre-line;
+  font-family: "Roboto", sans-serif;
+}
+
+.P10,
+.P12,
+.P14,
+.P16,
+.P18,
+.P24 {
+  color: rgb(167, 167, 167);
+  word-wrap: break-word;
+}
+
+.H1 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 54px;
+}
+.H2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+}
+.H3 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+}
+.H4 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+}
+.H5 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+.H6 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.P10,
+.Span10 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 15px;
+}
+
+.P12,
+.Span12 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.P14,
+.Span14 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.P16,
+.Span16 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.P18,
+.Span18 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.P24,
+.Span24 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 27px;
+}
+
+.Span30 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+}
+
+.Span12bold {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+}
+.Span14bold {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+}
+.Span16bold {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+.Span18bold {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: 1px;
+}
+
+.light {
+  font-weight: 300;
+}
