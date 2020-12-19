@@ -5,6 +5,7 @@ import {Switch, Route,Redirect} from 'react-router-dom';
 import LoginForm from "./containers/Auth/Login";
 import SignUpForm from "./containers/Auth/SignUp";
 import './styles/main.scss';
+
 function App() {
   return (
     <>
