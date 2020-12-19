@@ -1,3 +1,4 @@
-import MainSwitch from "./MainSwitch";
+import MainSwitch from "./MainSwitch"
+import Switch from "./Switch"
 
-export { MainSwitch };
+export { MainSwitch, Switch }

@@ -1,20 +1,16 @@
-import React, { useState } from "react";
-import clsx from "clsx";
-import Sidebar from "../../components/Sidebar";
-import { render } from "@testing-library/react";
-import {
-  createStyles,
-  makeStyles,
-  useTheme,
-  Theme,
-} from "@material-ui/core/styles";
+import React, { useState } from "react"
+import clsx from "clsx"
+import Sidebar from "../../components/Sidebar"
+import { render } from "@testing-library/react"
+import { createStyles, makeStyles, useTheme, Theme } from "@material-ui/core/styles"
 
-import "./style.scss";
+import "./style.scss"
 
-import { MainSwitch } from "../../components/Switches";
+import { MainSwitch } from "../../components/Switches"
+import Header from "../../components/Header"
 
-const drawerWidth = 280;
-const closeDrawerWidth = 110;
+const drawerWidth = 280
+const closeDrawerWidth = 110
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,18 +30,19 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
     },
   })
-);
+)
 
 interface State {
-  isOpen?: boolean;
+  isOpen?: boolean
 }
 
 function WithLayout<T>(Component: React.ComponentType<T>) {
   const WithLayoutComponent = (props: any) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const classes = useStyles();
+    const [isOpen, setIsOpen] = useState(false)
+    const classes = useStyles()
+
     return (
-      <div className="WithLayout">
+      <div className='WithLayout'>
         <Sidebar isOpen={isOpen} setOpen={setIsOpen} />
         <div
           className={clsx(
@@ -54,19 +51,17 @@ function WithLayout<T>(Component: React.ComponentType<T>) {
             "WithLayout__layout"
           )}
         >
-          <header className="WithLayout__layout-header">
-            <MainSwitch />
-          </header>
+          <Header />
 
-          <div className="WithLayout__layout-content">
+          <div className='WithLayout__layout-content'>
             <Component {...props} />
           </div>
-          <footer className="WithLayout__layout-footer">sss</footer>
+          <footer className='WithLayout__layout-footer'>WithLayout layout footer</footer>
         </div>
       </div>
-    );
-  };
-  return WithLayoutComponent;
+    )
+  }
+  return WithLayoutComponent
 }
 
-export default WithLayout;
+export default WithLayout

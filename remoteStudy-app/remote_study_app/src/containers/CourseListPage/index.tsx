@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect } from "react";
-import Container from "@material-ui/core/Container";
-import { useDispatch } from "react-redux";
-import { useShallowEqualSelector } from "../../utils/hooks";
+import React, { useCallback, useEffect } from "react"
+import Container from "@material-ui/core/Container"
+import { useDispatch } from "react-redux"
+import { useShallowEqualSelector } from "../../utils/hooks"
 
-import WithLayout from "../../hoc/WithLayout";
-import { CourseCard } from "../../components/Cards";
+import WithLayout from "../../hoc/WithLayout"
+import { CourseCard } from "../../components/Cards"
 
 interface ICourseListPageProps {}
 
@@ -22,11 +22,10 @@ const CourseListPage = () => {
   // }, []);
 
   return (
-    <ul className="CourseListPage-list">
-        <li className="CourseListPage-item">
-        </li>
+    <ul className='CourseListPage-list'>
+      <li className='CourseListPage-item'></li>
     </ul>
-  );
-};
+  )
+}
 
-export default WithLayout(CourseListPage);
+export default WithLayout(CourseListPage)
