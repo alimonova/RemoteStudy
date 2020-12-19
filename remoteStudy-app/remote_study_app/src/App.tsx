@@ -1,5 +1,4 @@
 import React from "react"
-import Sidebar from "./components/Sidebar"
 import CourseListPage from "./containers/CourseListPage"
 import { Switch, Route, Redirect } from "react-router-dom"
 import LoginForm from "./containers/Auth/Login"

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextField from "@material-ui/core/TextField";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 export interface AuthTextFieldProps {
   name: String,
   label: String,
@@ -9,7 +9,7 @@ export interface AuthTextFieldProps {
   error: any,
   helperText: any
 }
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   cssLabel: {
     color: "#fff",
     "&$cssFocused": {

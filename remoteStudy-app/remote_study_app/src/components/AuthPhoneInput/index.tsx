@@ -1,11 +1,11 @@
-import * as React from "react";
-import MuiPhoneNumber from "material-ui-phone-number";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import * as React from "react"
+import MuiPhoneNumber from "material-ui-phone-number"
+import { makeStyles } from "@material-ui/core/styles"
 
 export interface AuthPhoneInputProps {
-  handleInputChange: any;
-  name: String;
-  label: String;
+  handleInputChange: any
+  name: String
+  label: String
 }
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -36,21 +36,21 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: "2px",
     borderColor: "#fff !important",
   },
-}));
+}))
 const AuthPhoneInput: React.SFC<AuthPhoneInputProps> = ({
   handleInputChange,
   name,
   label,
 }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <MuiPhoneNumber
       onChange={handleInputChange}
       label={label}
       name={name.toLowerCase()}
-      size="small"
-      variant="outlined"
+      size='small'
+      variant='outlined'
       InputLabelProps={{
         classes: {
           root: classes.cssLabel,
@@ -65,7 +65,7 @@ const AuthPhoneInput: React.SFC<AuthPhoneInputProps> = ({
         },
       }}
     />
-  );
-};
+  )
+}
 
-export default AuthPhoneInput;
+export default AuthPhoneInput
