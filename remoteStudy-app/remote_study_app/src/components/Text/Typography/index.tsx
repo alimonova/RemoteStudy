@@ -1,42 +1,54 @@
-import React, { ReactChild } from 'react';
-import classes from './style.module.scss';
-import * as CSS from 'csstype';
-import { txt } from '../../../utils';
+import React from "react"
+import classes from "./style.module.scss"
+import { txt } from "../../../utils"
 
-type TStyle = CSS.Properties<0 | (string & {}), string & {}> | undefined
-
-interface Itypography {
-  children?: ReactChild | ReactChild[]
-  className?: string
-  style?: TStyle
-  light?: boolean
+type TopographyType = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLHeadingElement>,
+  HTMLHeadingElement
+> & {
+  islight?: boolean
 }
 
-function getParams(style: TStyle, activeClass: string, newClass: string | undefined, light?: boolean): object {  
-  if (light) return {style, className: txt.join([activeClass, newClass, classes.light])} 
-  return {style, className: txt.join([activeClass, newClass])} 
+function getProps(
+  props: TopographyType,
+  activeClass: string
+): React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement> {
+  const { islight, className, ...lastProps } = props
+  return {
+    className: txt.join([activeClass, className, islight && classes.light]),
+    ...lastProps,
+  }
 }
 
-export const H1 = ({ children, className, style, light }:Itypography) => <h1 {...getParams(style, classes.H1, className, light)}>{children}</h1>
-export const H2 = ({ children, className, style, light }:Itypography) => <h2 {...getParams(style, classes.H2, className, light)}>{children}</h2>
-export const H3 = ({ children, className, style, light }:Itypography) => <h3 {...getParams(style, classes.H3, className, light)}>{children}</h3>
-export const H4 = ({ children, className, style, light }:Itypography) => <h4 {...getParams(style, classes.H4, className, light)}>{children}</h4>
-export const H5 = ({ children, className, style, light }:Itypography) => <h5 {...getParams(style, classes.H5, className, light)}>{children}</h5>
-export const H6 = ({ children, className, style, light }:Itypography) => <h6 {...getParams(style, classes.H6, className, light)}>{children}</h6>
-export const P10 = ({ children, className, style, light }:Itypography) => <p {...getParams(style, classes.P10, className, light)}>{children}</p>
-export const P12 = ({ children, className, style, light }:Itypography) => <p {...getParams(style, classes.P12, className, light)}>{children}</p>
-export const P14 = ({ children, className, style, light }:Itypography) => <p {...getParams(style, classes.P14, className, light)}>{children}</p>
-export const P16 = ({ children, className, style, light }:Itypography) => <p {...getParams(style, classes.P16, className, light)}>{children}</p>
-export const P18 = ({ children, className, style, light }:Itypography) => <p {...getParams(style, classes.P18, className, light)}>{children}</p>
-export const P24 = ({ children, className, style, light }:Itypography) => <p {...getParams(style, classes.P24, className, light)}>{children}</p>
-export const Span10 = ({ children, className, style, light }:Itypography) => <span {...getParams(style, classes.Span10, className, light)}>{children}</span>
-export const Span12 = ({ children, className, style, light }:Itypography) => <span {...getParams(style, classes.Span12, className, light)}>{children}</span>
-export const Span14 = ({ children, className, style, light }:Itypography) => <span {...getParams(style, classes.Span14, className, light)}>{children}</span>
-export const Span16 = ({ children, className, style, light }:Itypography) => <span {...getParams(style, classes.Span16, className, light)}>{children}</span>
-export const Span18 = ({ children, className, style, light }:Itypography) => <span {...getParams(style, classes.Span18, className, light)}>{children}</span>
-export const Span24 = ({ children, className, style, light }:Itypography) => <span {...getParams(style, classes.Span24, className, light)}>{children}</span>
-export const Span30 = ({ children, className, style, light }:Itypography) => <span {...getParams(style, classes.Span30, className, light)}>{children}</span>
-export const Span12bold = ({ children, className, style }:Itypography) => <span {...getParams(style, classes.Span12bold, className)}>{children}</span>
-export const Span14bold = ({ children, className, style }:Itypography) => <span {...getParams(style, classes.Span14bold, className)}>{children}</span>
-export const Span16bold = ({ children, className, style }:Itypography) => <span {...getParams(style, classes.Span16bold, className)}>{children}</span>
-export const Span18bold = ({ children, className, style }:Itypography) => <span {...getParams(style, classes.Span18bold, className)}>{children}</span>
+function newEl(Tag: string, classesName: string) {
+  return ({ children, ...props }: TopographyType) => (
+    <Tag {...getProps(props, classesName)}>{children}</Tag>
+  )
+}
+
+const p = (c: string) => newEl("p", c)
+const span = (c: string) => newEl("span", c)
+
+export const H1 = newEl("h1", classes.H1)
+export const H2 = newEl("h2", classes.H2)
+export const H3 = newEl("h3", classes.H3)
+export const H4 = newEl("h4", classes.H4)
+export const H5 = newEl("h5", classes.H5)
+export const H6 = newEl("h6", classes.H6)
+export const P10 = p(classes.P10)
+export const P12 = p(classes.P12)
+export const P14 = p(classes.P14)
+export const P16 = p(classes.P16)
+export const P18 = p(classes.P18)
+export const P24 = p(classes.P24)
+export const Span10 = span(classes.Span10)
+export const Span12 = span(classes.Span12)
+export const Span14 = span(classes.Span14)
+export const Span16 = span(classes.Span16)
+export const Span18 = span(classes.Span18)
+export const Span24 = span(classes.Span24)
+export const Span30 = span(classes.Span30)
+export const Span12bold = span(classes.Span12bold)
+export const Span14bold = span(classes.Span14bold)
+export const Span16bold = span(classes.Span16bold)
+export const Span18bold = span(classes.Span18bold)
