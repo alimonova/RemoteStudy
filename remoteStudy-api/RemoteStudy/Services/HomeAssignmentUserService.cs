@@ -43,5 +43,17 @@ namespace RemoteStudy.Services
                 _assignmentcontext.SaveChanges();
             }
         }
+
+        public void GradeHomeAssignment(Guid studentId, Guid homeAssignmentId, double mark, Guid currentUserId)
+        { 
+            var homeAssignmentUser = _assignmentcontext.HomeAssignmentUsers.Where(x => x.HomeAssignmentId == homeAssignmentId && x.UserId == studentId).First();
+            var user = _assignmentcontext.Courses.Where(z=>z.Id == _assignmentcontext.Lessons
+            .Where(y=>y.Id == _assignmentcontext.HomeAssignments.Where(x => x.Id == homeAssignmentId).First().LessonId).First().CourseId).First().TeacherId;
+            if (user == currentUserId)
+            {
+                _assignmentcontext.HomeAssignmentUsers.Where(x => x.HomeAssignmentId == homeAssignmentId && x.UserId == studentId).First().Mark = mark;
+                _assignmentcontext.SaveChanges();
+            }
+        }
     }
 }

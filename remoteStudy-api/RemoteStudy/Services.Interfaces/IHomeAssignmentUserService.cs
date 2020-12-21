@@ -11,6 +11,7 @@ namespace RemoteStudy.Services.Interfaces
         IEnumerable<HomeAssignmentUser> GetHomeAssignmentUsers();
         HomeAssignmentUser GetHomeAssignmentUserById(Guid id);
         HomeAssignmentUser CreateHomeAssignmentUser(HomeAssignmentUser homeAssignmentUser);
+        void GradeHomeAssignment(Guid studentId, Guid homeAssignmentId, double mark, Guid currentUserId);
         void Delete(Guid id);
     }
 }

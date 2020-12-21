@@ -11,6 +11,7 @@ namespace RemoteStudy.Models
         public Guid? HomeAssignmentId { get; set; }
         public Guid? UserId { get; set; }
         public HomeAssignment HomeAssignment { get; set; }
+        public double Mark { get; set; }
         public User User { get; set; }
     }
 }
