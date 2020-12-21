@@ -31,28 +31,6 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<IEnumerable<UserCourseDto>>(userCourses));
         }
 
-        [HttpGet("ReadFavourites")]
-        public IActionResult GetFavourites()
-        {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            IEnumerable<Claim> claims = identity.Claims;
-            var claim = claims.First(x => x.Type == "UserID").Value;
-
-            var userCourses = _userCourses.GetFavouriteCourses(Guid.Parse(claim));
-            return Ok(_mapper.Map<IEnumerable<UserCourseDto>>(userCourses));
-        }
-
-        [HttpGet("AddToFavourites/{courseId}")]
-        public IActionResult AddToFavourites(Guid courseId)
-        {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            IEnumerable<Claim> claims = identity.Claims;
-            var claim = claims.First(x => x.Type == "UserID").Value;
-
-            var userCourse = _userCourses.AddCourseToFavourites(Guid.Parse(claim), courseId);
-            return Ok(_mapper.Map<UserCourseDto>(userCourse));
-        }
-
         [HttpGet("ReadById/{id}")]
         public IActionResult Get(Guid id)
         {

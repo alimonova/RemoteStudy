@@ -122,12 +122,25 @@ namespace RemoteStudy.Services
 
         public IEnumerable<Course> GetFavouriteCourses(Guid studentId)
         {
-            throw new NotImplementedException();
+            var userCourses = _coursecontext.UserCourses.Where(x => x.UserId == studentId && x.IsFavourite == true).ToList();
+            var courses =  new List<Course>();
+            foreach (var x in userCourses)
+            {
+                courses.Add(_coursecontext.Courses.Where(c => c.Id == x.CourseId).First());
+
+            }
+
+            return courses;
         }
 
-        public Course AddCourseToFavourites(Guid CourseId)
+        public void AddCourseToFavourites(Guid courseId, Guid studentId)
         {
-            throw new NotImplementedException();
+            var userCourse = _coursecontext.UserCourses
+                .Where(x => x.UserId == studentId && x.CourseId == courseId).First();
+            userCourse.IsFavourite = true;
+
+            _coursecontext.UserCourses.Update(userCourse);
+            _coursecontext.SaveChanges();
         }
     }
 }
