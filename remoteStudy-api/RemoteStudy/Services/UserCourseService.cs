@@ -43,5 +43,35 @@ namespace RemoteStudy.Services
                 _usercoursecontext.SaveChanges();
             }
         }
+
+        public double RateCourse(Guid userId, Guid courseId, double rate)
+        {
+            _usercoursecontext.UserCourses.Where(x => x.CourseId == courseId && x.UserId == userId).First().Rate = rate;
+            return CalculateCourseRating(courseId);
+        }
+        public double CalculateCourseRating(Guid courseId)
+        {
+            var userCourses = _usercoursecontext.UserCourses.Where(x => x.CourseId == courseId).ToList();
+
+            var sum = 0.0;
+            var num = 0;
+            foreach (var x in userCourses)
+            {
+                if (x.Rate != 0.0)
+                {
+                    sum += x.Rate;
+                    num++;
+                }
+            }
+            if (num > 0)
+            {
+                var rating = sum / num;
+                _usercoursecontext.Courses.Where(x => x.Id == courseId).First().Rating = rating;
+                _usercoursecontext.SaveChanges();
+                return rating;
+            }
+
+            return 0.0;
+        }
     }
 }

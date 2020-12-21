@@ -11,6 +11,7 @@ namespace RemoteStudy.Services.Interfaces
         IEnumerable<UserCourse> GetUserCourses();
         UserCourse GetUserCourseById(Guid id);
         UserCourse CreateUserCourse(UserCourse userCourse);
+        double RateCourse(Guid userId, Guid courseId, double rate);
         void Delete(Guid id);
     }
 }

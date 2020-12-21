@@ -12,5 +12,6 @@ namespace RemoteStudy.Models
         public Guid CourseId { get; set; }
         public bool HasAccess { get; set; }
         public bool IsFavourite { get; set; }
+        public double Rate { get; set; }
     }
 }

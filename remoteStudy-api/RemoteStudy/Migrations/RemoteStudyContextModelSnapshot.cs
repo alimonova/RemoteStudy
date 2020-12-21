@@ -400,6 +400,8 @@ namespace RemoteStudy.Migrations
 
                     b.Property<bool>("IsFavourite");
 
+                    b.Property<double>("Rate");
+
                     b.Property<Guid>("UserId");
 
                     b.HasKey("Id");

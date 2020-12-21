@@ -54,6 +54,17 @@ namespace RemoteStudy.Controllers
             return BadRequest(ModelState);
         }
 
+        [HttpPost("RateCourse/{courseId}/{rate}")]
+        public IActionResult RateCourse(Guid courseId, double rate)
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
+            var rating = _userCourses.RateCourse(Guid.Parse(claim), courseId, rate);
+            return Ok(rating);
+        }
+
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete(Guid id)
         {
