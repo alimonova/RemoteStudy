@@ -73,5 +73,21 @@ namespace RemoteStudy.Services
 
             return 0.0;
         }
+
+        public UserCourse GetRequests(Guid courseId)
+        {
+            return _usercoursecontext.UserCourses.Where(x => x.Id == courseId && x.HasAccess == false).First();
+        }
+
+        public void AcceptRequest(Guid userCourseId)
+        {
+            _usercoursecontext.UserCourses.Where(x => x.Id == userCourseId).First().HasAccess = true;
+            _usercoursecontext.SaveChanges();
+        }
+
+        public bool UserHasAccessToCourse(Guid userId, Guid courseId)
+        {
+            return _usercoursecontext.UserCourses.First(x => x.UserId == userId && x.CourseId == courseId).HasAccess;
+        }
     }
 }
