@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace RemoteStudy.Controllers
@@ -61,7 +62,11 @@ namespace RemoteStudy.Controllers
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete(Guid id)
         {
-            _courseTags.Delete(id);
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
+            _courseTags.Delete(id, Guid.Parse(claim));
             return StatusCode((int)HttpStatusCode.NoContent);
         }
     }

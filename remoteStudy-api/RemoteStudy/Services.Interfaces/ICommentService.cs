@@ -11,8 +11,8 @@ namespace RemoteStudy.Services.Interfaces
         IEnumerable<Comment> GetComments();
         Comment GetCommentById(Guid id);
         Comment CreateComment(Comment comment);
-        Comment UpdateComment(Comment comment);
+        Comment UpdateComment(Comment comment, Guid userId);
         IEnumerable<Comment> GetCommentsByLessonId(Guid lessonId);
-        void Delete(Guid id);
+        void Delete(Guid id, Guid userId);
     }
 }

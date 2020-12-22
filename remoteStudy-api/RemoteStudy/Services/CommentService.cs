@@ -41,22 +41,25 @@ namespace RemoteStudy.Services
             return comment;
         }
 
-        public Comment UpdateComment(Comment comment)
+        public Comment UpdateComment(Comment comment, Guid userId)
         {
-            _commentcontext.Comments.Update(comment);
-            _commentcontext.SaveChanges();
+            if (_commentcontext.Comments.First(x => x.Id == comment.Id).UserId == userId)
+            {
+                _commentcontext.Comments.Update(comment);
+                _commentcontext.SaveChanges();
+            }
 
             return comment;
         }
 
-        public void Delete(Guid Id)
+        public void Delete(Guid Id, Guid userId)
         {
             var comment = GetCommentById(Id);
-            if (comment != null)
+            if (comment != null && _commentcontext.Comments.First(x=>x.Id == Id).UserId == userId)
             {
                 _commentcontext.Comments.Remove(comment);
                 _commentcontext.SaveChanges();
-            }
+            }   
         }
     }
 }

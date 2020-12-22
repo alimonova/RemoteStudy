@@ -61,6 +61,11 @@ namespace RemoteStudy.Controllers
         [HttpPost("Create")]
         public IActionResult Post(CourseDto course)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
+            course.TeacherId = Guid.Parse(claim);
             if (ModelState.IsValid)
             {
                 var _course = _mapper.Map<Course>(course);
@@ -74,10 +79,14 @@ namespace RemoteStudy.Controllers
         [HttpPut("Update")]
         public IActionResult Put(CourseDto course)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
             if (ModelState.IsValid)
             {
                 var _course = _mapper.Map<Course>(course);
-                return StatusCode((int)HttpStatusCode.NoContent, _courses.UpdateCourse(_course));
+                return StatusCode((int)HttpStatusCode.NoContent, _courses.UpdateCourse(_course, Guid.Parse(claim)));
             }
 
             return BadRequest(ModelState);
@@ -85,9 +94,13 @@ namespace RemoteStudy.Controllers
 
         [Authorize(Roles = "Teacher")]
         [HttpDelete("Delete/{id}")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(Guid id, Guid userId)
         {
-            _courses.Delete(id);
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
+            _courses.Delete(id, Guid.Parse(claim));
             return StatusCode((int)HttpStatusCode.NoContent);
         }
 

@@ -49,6 +49,11 @@ namespace RemoteStudy.Controllers
         [HttpPost("Create")]
         public IActionResult Post(UserCourseDto userCourse)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
+            userCourse.UserId = Guid.Parse(claim);
             if (ModelState.IsValid)
             {
                 var _userCourse = _mapper.Map<UserCourse>(userCourse);
