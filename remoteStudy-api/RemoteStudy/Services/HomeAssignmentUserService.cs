@@ -44,14 +44,14 @@ namespace RemoteStudy.Services
             }
         }
 
-        public void GradeHomeAssignment(Guid studentId, Guid homeAssignmentId, double mark, Guid currentUserId)
+        public void GradeHomeAssignment(Guid homeAssignmentUserId, double mark, Guid currentUserId)
         { 
-            var homeAssignmentUser = _assignmentcontext.HomeAssignmentUsers.Where(x => x.HomeAssignmentId == homeAssignmentId && x.UserId == studentId).First();
+            var homeAssignmentUser = _assignmentcontext.HomeAssignmentUsers.Where(x => x.Id == homeAssignmentUserId).First();
             var user = _assignmentcontext.Courses.Where(z=>z.Id == _assignmentcontext.Lessons
-            .Where(y=>y.Id == _assignmentcontext.HomeAssignments.Where(x => x.Id == homeAssignmentId).First().LessonId).First().CourseId).First().TeacherId;
+            .Where(y=>y.Id == _assignmentcontext.HomeAssignments.Where(x => x.Id == homeAssignmentUser.HomeAssignmentId).First().LessonId).First().CourseId).First().TeacherId;
             if (user == currentUserId)
             {
-                _assignmentcontext.HomeAssignmentUsers.Where(x => x.HomeAssignmentId == homeAssignmentId && x.UserId == studentId).First().Mark = mark;
+                _assignmentcontext.HomeAssignmentUsers.Where(x => x.HomeAssignmentId == homeAssignmentUser.HomeAssignmentId && x.UserId == homeAssignmentUser.UserId).First().Mark = mark;
                 _assignmentcontext.SaveChanges();
             }
         }

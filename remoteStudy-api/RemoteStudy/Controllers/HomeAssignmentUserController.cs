@@ -61,14 +61,14 @@ namespace RemoteStudy.Controllers
             return StatusCode((int)HttpStatusCode.NoContent);
         }
 
-        [HttpDelete("GradeAssignment/{studentId}/{homeAssignmentId}/{mark}")]
-        public IActionResult GradeAssignment(Guid studentId, Guid homeAssignmentId, double mark)
+        [HttpPut("GradeAssignment/{homeAssignmentUserId}/{mark}")]
+        public IActionResult GradeAssignment(Guid homeAssignmentUserId, double mark)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             IEnumerable<Claim> claims = identity.Claims;
             var claim = claims.First(x => x.Type == "UserID").Value;
 
-            _homeAssignmentUsers.GradeHomeAssignment(studentId, homeAssignmentId, mark, Guid.Parse(claim));
+            _homeAssignmentUsers.GradeHomeAssignment(homeAssignmentUserId, mark, Guid.Parse(claim));
             return Ok();
         }
     }
