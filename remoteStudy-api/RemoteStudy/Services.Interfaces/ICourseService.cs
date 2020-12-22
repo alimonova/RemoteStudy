@@ -8,10 +8,9 @@ namespace RemoteStudy.Services.Interfaces
 {
     public interface ICourseService
     {
-        IEnumerable<Course> GetCourses();
+        IEnumerable<Course> GetCourses(PageFilterSortModel parameter);
         Course GetCourseById(Guid id);
         IEnumerable<Course> GetCoursesByTeacherId(Guid teacherId);
-        //IEnumerable<Course> GetCoursesBySubjectId(Guid subjectId);
         Course CreateCourse(Course channel);
         Course UpdateCourse(Course channel);
         void Delete(Guid id);
