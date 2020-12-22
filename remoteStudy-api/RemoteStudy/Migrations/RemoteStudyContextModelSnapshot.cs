@@ -202,6 +202,8 @@ namespace RemoteStudy.Migrations
 
                     b.Property<Guid?>("HomeAssignmentId");
 
+                    b.Property<double>("Mark");
+
                     b.Property<Guid?>("UserId");
 
                     b.HasKey("Id");
