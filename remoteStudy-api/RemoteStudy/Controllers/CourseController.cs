@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace RemoteStudy.Controllers
@@ -83,5 +84,28 @@ namespace RemoteStudy.Controllers
             _courses.Delete(id);
             return StatusCode((int)HttpStatusCode.NoContent);
         }
+
+        [HttpGet("ReadFavourites")]
+        public IActionResult GetFavourites()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
+            var courses = _courses.GetFavouriteCourses(Guid.Parse(claim));
+            return Ok(_mapper.Map<IEnumerable<CourseDto>>(courses));
+        }
+
+        [HttpGet("AddToFavourites/{courseId}")]
+        public IActionResult AddToFavourites(Guid courseId)
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
+            _courses.AddCourseToFavourites(Guid.Parse(claim), courseId);
+            return StatusCode((int)HttpStatusCode.NoContent);
+        }
+
     }
 }

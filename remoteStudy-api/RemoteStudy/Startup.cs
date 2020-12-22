@@ -53,12 +53,15 @@ namespace RemoteStudy
             services.AddOptions<TokenSettings>("TokenSettings");
 
             services.AddTransient<ICommentService, CommentService>();
+            services.AddTransient<IHomeAssignmentService, HomeAssignmentService>();
             services.AddTransient<ICourseTagService, CourseTagService>();
             services.AddTransient<ICourseService, CourseService>();
             services.AddTransient<ILessonService, LessonService>();
             services.AddTransient<IProfileService, ProfileService>();
+            services.AddTransient<IHomeAssignmentUserService, HomeAssignmentUserService>();
             services.AddTransient<ISubjectService, SubjectService>();
             services.AddTransient<ITagService, TagService>();
+            services.AddTransient<IUserCourseService, UserCourseService>();
 
             services.AddSingleton<CurrentUserInfo>();
 

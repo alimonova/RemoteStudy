@@ -1,8 +1,10 @@
-﻿using RemoteStudy.Models;
+﻿using Microsoft.AspNetCore.Http;
+using RemoteStudy.Models;
 using RemoteStudy.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace RemoteStudy.Services
@@ -116,6 +118,29 @@ namespace RemoteStudy.Services
         public IEnumerable<Course> GetCoursesByTeacherId(Guid userId)
         {
             return _coursecontext.Courses.Where(x => x.TeacherId == userId);
+        }
+
+        public IEnumerable<Course> GetFavouriteCourses(Guid studentId)
+        {
+            var userCourses = _coursecontext.UserCourses.Where(x => x.UserId == studentId && x.IsFavourite == true).ToList();
+            var courses =  new List<Course>();
+            foreach (var x in userCourses)
+            {
+                courses.Add(_coursecontext.Courses.Where(c => c.Id == x.CourseId).First());
+
+            }
+
+            return courses;
+        }
+
+        public void AddCourseToFavourites(Guid courseId, Guid studentId)
+        {
+            var userCourse = _coursecontext.UserCourses
+                .Where(x => x.UserId == studentId && x.CourseId == courseId).First();
+            userCourse.IsFavourite = true;
+
+            _coursecontext.UserCourses.Update(userCourse);
+            _coursecontext.SaveChanges();
         }
     }
 }

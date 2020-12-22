@@ -24,6 +24,11 @@ namespace RemoteStudy.Configurations
                 .HasOne(c => c.Course)
                 .WithMany(p => p.Lessons)
                 .HasForeignKey(c => c.CourseId);
+
+            builder
+                .HasMany(c => c.HomeAssignments)
+                .WithOne(p => p.Lesson)
+                .HasForeignKey(c => c.LessonId);
         }
     }
 }
