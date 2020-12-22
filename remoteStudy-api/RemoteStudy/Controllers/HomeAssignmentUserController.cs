@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RemoteStudy.Dto;
 using RemoteStudy.Models;
@@ -24,6 +25,7 @@ namespace RemoteStudy.Controllers
             _mapper = mapper;
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpGet("Read")]
         public IActionResult Get()
         {
@@ -31,6 +33,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<IEnumerable<HomeAssignmentUserDto>>(homeAssignmentUsers));
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpGet("ReadById/{id}")]
         public IActionResult Get(Guid id)
         {
@@ -42,9 +45,15 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<HomeAssignmentUserDto>(homeAssignmentUser));
         }
 
+        [Authorize(Roles = "Student")]
         [HttpPost("Create")]
         public IActionResult Post(HomeAssignmentUserDto homeAssignmentUser)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
+            homeAssignmentUser.UserId = Guid.Parse(claim);
             if (ModelState.IsValid)
             {
                 var _homeAssignmentUser = _mapper.Map<HomeAssignmentUser>(homeAssignmentUser);
@@ -54,6 +63,7 @@ namespace RemoteStudy.Controllers
             return BadRequest(ModelState);
         }
 
+        [Authorize(Roles = "Student")]
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete(Guid id)
         {
@@ -61,6 +71,7 @@ namespace RemoteStudy.Controllers
             return StatusCode((int)HttpStatusCode.NoContent);
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpPut("GradeAssignment/{homeAssignmentUserId}/{mark}")]
         public IActionResult GradeAssignment(Guid homeAssignmentUserId, double mark)
         {

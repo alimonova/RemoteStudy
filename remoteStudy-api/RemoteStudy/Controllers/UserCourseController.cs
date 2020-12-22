@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RemoteStudy.Dto;
 using RemoteStudy.Models;
@@ -24,6 +25,7 @@ namespace RemoteStudy.Controllers
             _mapper = mapper;
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpGet("Read")]
         public IActionResult Get()
         {
@@ -31,6 +33,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<IEnumerable<UserCourseDto>>(userCourses));
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpGet("ReadById/{id}")]
         public IActionResult Get(Guid id)
         {
@@ -42,9 +45,15 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<UserCourseDto>(userCourse));
         }
 
+        [Authorize(Roles = "Student")]
         [HttpPost("Create")]
         public IActionResult Post(UserCourseDto userCourse)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
+            userCourse.UserId = Guid.Parse(claim);
             if (ModelState.IsValid)
             {
                 var _userCourse = _mapper.Map<UserCourse>(userCourse);
@@ -54,6 +63,7 @@ namespace RemoteStudy.Controllers
             return BadRequest(ModelState);
         }
 
+        [Authorize(Roles = "Student")]
         [HttpPost("RateCourse/{courseId}/{rate}")]
         public IActionResult RateCourse(Guid courseId, double rate)
         {
@@ -65,6 +75,7 @@ namespace RemoteStudy.Controllers
             return Ok(rating);
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete(Guid id)
         {

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RemoteStudy.Dto;
 using RemoteStudy.Models;
@@ -24,7 +25,7 @@ namespace RemoteStudy.Controllers
             _mapper = mapper;
         }
 
-
+        [Authorize]
         [HttpGet("Read")]
         public IActionResult Get([FromQuery] PageFilterSortModel parameters)
         {
@@ -32,6 +33,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<IEnumerable<CourseDto>>(courses));
         }
 
+        [Authorize]
         [HttpGet("ReadById/{id}")]
         public IActionResult Get(Guid id)
         {
@@ -43,6 +45,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<CourseDto>(course));
         }
 
+        [Authorize]
         [HttpGet("ReadByCourseId/{teacherId}")]
         public IActionResult GetByCourseId(Guid courseId)
         {
@@ -54,9 +57,15 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<IEnumerable<CourseDto>>(courses));
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpPost("Create")]
         public IActionResult Post(CourseDto course)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
+            course.TeacherId = Guid.Parse(claim);
             if (ModelState.IsValid)
             {
                 var _course = _mapper.Map<Course>(course);
@@ -66,25 +75,36 @@ namespace RemoteStudy.Controllers
             return BadRequest(ModelState);
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpPut("Update")]
         public IActionResult Put(CourseDto course)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
             if (ModelState.IsValid)
             {
                 var _course = _mapper.Map<Course>(course);
-                return StatusCode((int)HttpStatusCode.NoContent, _courses.UpdateCourse(_course));
+                return StatusCode((int)HttpStatusCode.NoContent, _courses.UpdateCourse(_course, Guid.Parse(claim)));
             }
 
             return BadRequest(ModelState);
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpDelete("Delete/{id}")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(Guid id, Guid userId)
         {
-            _courses.Delete(id);
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var claim = claims.First(x => x.Type == "UserID").Value;
+
+            _courses.Delete(id, Guid.Parse(claim));
             return StatusCode((int)HttpStatusCode.NoContent);
         }
 
+        [Authorize]
         [HttpGet("ReadFavourites")]
         public IActionResult GetFavourites()
         {
@@ -96,6 +116,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<IEnumerable<CourseDto>>(courses));
         }
 
+        [Authorize]
         [HttpGet("AddToFavourites/{courseId}")]
         public IActionResult AddToFavourites(Guid courseId)
         {

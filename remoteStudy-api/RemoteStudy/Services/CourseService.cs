@@ -97,18 +97,21 @@ namespace RemoteStudy.Services
             return course;
         }
 
-        public Course UpdateCourse(Course course)
+        public Course UpdateCourse(Course course, Guid userId)
         {
-            _coursecontext.Courses.Update(course);
-            _coursecontext.SaveChanges();
+            if (_coursecontext.Comments.First(x => x.Id == course.Id).UserId == userId)
+            {
+                _coursecontext.Courses.Update(course);
+                _coursecontext.SaveChanges();
+            }
 
             return course;
         }
 
-        public void Delete(Guid Id)
+        public void Delete(Guid Id, Guid userId)
         {
             var course = GetCourseById(Id);
-            if (course != null)
+            if (course != null && _coursecontext.Courses.First(x => x.Id == Id).TeacherId == userId)
             {
                 _coursecontext.Courses.Remove(course);
                 _coursecontext.SaveChanges();

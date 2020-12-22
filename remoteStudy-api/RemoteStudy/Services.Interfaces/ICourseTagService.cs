@@ -11,6 +11,6 @@ namespace RemoteStudy.Services.Interfaces
         IEnumerable<CourseTag> GetCourseTags();
         CourseTag GetCourseTagById(Guid id);
         CourseTag CreateCourseTag(CourseTag courseTag);
-        void Delete(Guid id);
+        void Delete(Guid id, Guid userId);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RemoteStudy.Dto;
 using RemoteStudy.Models;
@@ -23,7 +24,7 @@ namespace RemoteStudy.Controllers
             _mapper = mapper;
         }
 
-
+        [Authorize]
         [HttpGet("Read")]
         public IActionResult Get()
         {
@@ -31,6 +32,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<IEnumerable<SubjectDto>>(subjects));
         }
 
+        [Authorize]
         [HttpGet("ReadById/{id}")]
         public IActionResult Get(Guid id)
         {
@@ -42,6 +44,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<SubjectDto>(subject));
         }
 
+        [Authorize]
         [HttpGet("ReadByCourseId/{id}")]
         public IActionResult GetByCourseId(Guid id)
         {
@@ -53,6 +56,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<SubjectDto>(subject));
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("Create")]
         public IActionResult Post(SubjectDto subject)
         {
@@ -65,6 +69,7 @@ namespace RemoteStudy.Controllers
             return BadRequest(ModelState);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("Update")]
         public IActionResult Put(SubjectDto subject)
         {
@@ -77,6 +82,7 @@ namespace RemoteStudy.Controllers
             return BadRequest(ModelState);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete(Guid id)
         {

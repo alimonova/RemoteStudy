@@ -34,10 +34,10 @@ namespace RemoteStudy.Services
             return courseTag;
         }
 
-        public void Delete(Guid id)
+        public void Delete(Guid id, Guid userId)
         {
             var coursetag = GetCourseTagById(id);
-            if (coursetag != null)
+            if (coursetag != null && _coursetagcontext.Courses.First(x=>x.Id == id).TeacherId == userId)
             {
                 _coursetagcontext.CourseTags.Remove(coursetag);
                 _coursetagcontext.SaveChanges();
