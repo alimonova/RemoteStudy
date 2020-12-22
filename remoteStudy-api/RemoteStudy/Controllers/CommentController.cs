@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RemoteStudy.Dto;
 using RemoteStudy.Models;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace RemoteStudy.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CommentController : ControllerBase

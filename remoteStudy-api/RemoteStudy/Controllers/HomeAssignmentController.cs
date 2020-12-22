@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RemoteStudy.Dto;
 using RemoteStudy.Models;
@@ -23,7 +24,7 @@ namespace RemoteStudy.Controllers
             _mapper = mapper;
         }
 
-
+        [Authorize]
         [HttpGet("Read")]
         public IActionResult Get()
         {
@@ -31,6 +32,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<IEnumerable<HomeAssignmentDto>>(homeAssignments));
         }
 
+        [Authorize]
         [HttpGet("ReadById/{id}")]
         public IActionResult Get(Guid id)
         {
@@ -42,6 +44,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<HomeAssignmentDto>(homeAssignment));
         }
 
+        [Authorize]
         [HttpGet("ReadByLessonId/{id}")]
         public IActionResult GetByLessonId(Guid lessonId)
         {
@@ -53,6 +56,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<IEnumerable<HomeAssignmentDto>>(homeAssignments));
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpPost("Create")]
         public IActionResult Post(HomeAssignmentDto homeAssignment)
         {
@@ -65,6 +69,7 @@ namespace RemoteStudy.Controllers
             return BadRequest(ModelState);
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpPut("Update")]
         public IActionResult Put(HomeAssignmentDto homeAssignment)
         {
@@ -77,6 +82,7 @@ namespace RemoteStudy.Controllers
             return BadRequest(ModelState);
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete(Guid id)
         {

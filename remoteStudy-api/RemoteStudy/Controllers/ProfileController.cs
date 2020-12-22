@@ -30,6 +30,7 @@ namespace RemoteStudy.Controllers
             _environment = environment;
         }
 
+        [Authorize]
         [HttpGet("ReadByUserId/{id}")]
         public IActionResult GetByUserId(Guid id)
         {
@@ -37,6 +38,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<ProfileDto>(profiles));
         }
 
+        [Authorize]
         [HttpGet("ReadById/{id}")]
         public IActionResult GetById(Guid id)
         {

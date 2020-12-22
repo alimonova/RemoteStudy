@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RemoteStudy.Dto;
 using RemoteStudy.Models;
@@ -24,7 +25,7 @@ namespace RemoteStudy.Controllers
             _mapper = mapper;
         }
 
-
+        [Authorize]
         [HttpGet("Read")]
         public IActionResult Get([FromQuery] PageFilterSortModel parameters)
         {
@@ -32,6 +33,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<IEnumerable<CourseDto>>(courses));
         }
 
+        [Authorize]
         [HttpGet("ReadById/{id}")]
         public IActionResult Get(Guid id)
         {
@@ -43,6 +45,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<CourseDto>(course));
         }
 
+        [Authorize]
         [HttpGet("ReadByCourseId/{teacherId}")]
         public IActionResult GetByCourseId(Guid courseId)
         {
@@ -54,6 +57,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<IEnumerable<CourseDto>>(courses));
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpPost("Create")]
         public IActionResult Post(CourseDto course)
         {
@@ -66,6 +70,7 @@ namespace RemoteStudy.Controllers
             return BadRequest(ModelState);
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpPut("Update")]
         public IActionResult Put(CourseDto course)
         {
@@ -78,6 +83,7 @@ namespace RemoteStudy.Controllers
             return BadRequest(ModelState);
         }
 
+        [Authorize(Roles = "Teacher")]
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete(Guid id)
         {
@@ -85,6 +91,7 @@ namespace RemoteStudy.Controllers
             return StatusCode((int)HttpStatusCode.NoContent);
         }
 
+        [Authorize]
         [HttpGet("ReadFavourites")]
         public IActionResult GetFavourites()
         {
@@ -96,6 +103,7 @@ namespace RemoteStudy.Controllers
             return Ok(_mapper.Map<IEnumerable<CourseDto>>(courses));
         }
 
+        [Authorize]
         [HttpGet("AddToFavourites/{courseId}")]
         public IActionResult AddToFavourites(Guid courseId)
         {
