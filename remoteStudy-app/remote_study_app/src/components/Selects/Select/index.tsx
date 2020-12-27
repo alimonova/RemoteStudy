@@ -9,6 +9,8 @@ export default function Select({}: Props): ReactElement {
   const ref = useRef<HTMLDivElement>(null)
   const [isActive, setIsActive] = useDetectOutsideClick(ref)
 
+  testFetch()
+
   return (
     <div ref={ref}>
       <span></span>
@@ -19,4 +21,13 @@ export default function Select({}: Props): ReactElement {
       {isActive && <div>children</div>}
     </div>
   )
+}
+
+async function testFetch() {
+  const res = await fetch("http://localhost:3001/courses")
+  console.log(res)
+  if (res.ok) {
+    const data = await res.json()
+    console.log(data)
+  }
 }

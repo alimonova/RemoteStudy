@@ -6,6 +6,7 @@ type TopographyType = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLHeadingElement>,
   HTMLHeadingElement
 > & {
+  /** сюда добавлять новые типы пропсов */
   islight?: boolean
 }
 
@@ -13,13 +14,15 @@ function getProps(
   props: TopographyType,
   activeClass: string
 ): React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement> {
+  /** здесь можно описать работу новых типов пропсов */
   const { islight, className, ...lastProps } = props
   return {
-    className: txt.join([activeClass, className, islight && classes.light]),
+    className: txt.join([activeClass, islight && classes.light, className]),
     ...lastProps,
   }
 }
 
+/** Создание нового элемента */
 function newEl(Tag: string, classesName: string) {
   return ({ children, ...props }: TopographyType) => (
     <Tag {...getProps(props, classesName)}>{children}</Tag>
